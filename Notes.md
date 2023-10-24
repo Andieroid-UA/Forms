@@ -122,3 +122,77 @@ Display a warning message if the Form is invalid AND was touched. Display a warn
 
 Upon submitting the form, you should simply print the Value of the Form to the Console. Optionally, display it in your template.
 ==============
+
+##  Introduction to the Reactive Approach
+
+## Reactive Setup
+
+## Reactive: Creating a form in code
+
+## Reactive: synching HTML and form
+
+## Reactive: Submitting the form
+
+## Reactive: Adding validation
+
+This is not going to work like passing through Angular with "required" in the HTML form after your classes. You need to add to the app.module.ts file.
+
+## Reactive: Getting access to controls
+
+We can't use ngModel since it's not registered, we can do ngIf
+
+![Alt text](image-2.png)
+
+## Reactive: Grouping controls
+
+So we access our elements differently with the get helper method
+
+## Reactive: Arrays of form controls (form array)
+
+Creating a new form group, and putting the HTML username and email elements into that div section
+
+![Alt text](image-3.png)
+
+Just need to add a path with a dot. Simple as that.
+
+In this lecture, we'll add some code to access the controls of our form array:
+
+*ngFor="let hobbyControl of signupForm.get('hobbies').controls; let i = index"
+
+This code will fail as of the latest Angular version.
+
+You can fix it easily though. Outsource the "get the controls" logic into a method of your component code (the .ts file):
+
+getControls() {
+  return (<FormArray>this.signupForm.get('hobbies')).controls;
+}
+In the template, you can then use:
+
+*ngFor="let hobbyControl of getControls(); let i = index"
+
+Alternatively, you can set up a getter and use an alternative type casting syntax:
+
+get controls() {
+  return (this.signupForm.get('hobbies') as FormArray).controls;
+}
+and then in the template:
+
+*ngFor="let hobbyControl of controls; let i = index"
+
+This adjustment is required due to the way TS works and Angular parses your templates (it doesn't understand TS there).
+
+*Added hobbies... to the form*
+
+## Reactive: Creating custom validators
+
+
+
+## Reactive: using error codes
+
+## Reactive: Creating a custom async validator
+
+## Reactive: reacting to status or value changes
+
+## Reactive: Setting and patching values
+
+## Assignment: Reactive Forms

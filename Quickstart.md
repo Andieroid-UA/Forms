@@ -44,3 +44,12 @@ node_modules/bootstrap/dist/css/bootstrap.min
 OR
 
     ng g c [name of your component]
+
+
+In order to follow along smoothly with the course examples, make sure you install RxJS v6 by running
+
+    npm install --save rxjs@6 
+
+In addition, also install the rxjs-compat package:
+
+    npm install --save rxjs-compat
